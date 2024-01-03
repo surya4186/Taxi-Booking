@@ -1,5 +1,7 @@
 package com.zsgs;
 
+import java.sql.SQLException;
+
 import com.zsgs.taxiViewmodel.TaxiViewModel;
 import com.zsgs.taxiview.TaxiView;
 
@@ -12,11 +14,9 @@ import com.zsgs.taxiview.TaxiView;
 //-If two taxi’s are free at the same point, one with lower earning is allocated
 //-If no taxi is free at that time, booking is rejected
 public class Main {
-	public static void main(String[] args) {
-//		TaxiModel model = new TaxiModel();
-//		TaxiViewModel viewModel = new TaxiViewModel(model);
+	public static void main(String[] args) throws SQLException {
 		TaxiView view = new TaxiView();
-
 		view.showMenu();
+
 	}
 }

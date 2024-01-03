@@ -1,8 +1,10 @@
 package com.zsgs.taxiview;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.zsgs.booktaxi.BookTaxiView;
 import com.zsgs.dto.Taxi;
 import com.zsgs.taxiViewmodel.TaxiViewModel;
 
@@ -11,14 +13,16 @@ public class TaxiView {
 	List<Taxi> taxi;
 	List<Taxi> freeTaxi;
 	private Scanner scanner;
+	BookTaxiView bookTaxi;
 
 	public TaxiView() {
-		this.viewModel = new TaxiViewModel(this);
+//		this.viewModel = new TaxiViewModel(this);
 		this.scanner = new Scanner(System.in);
-		taxi = viewModel.createtaxi();
+		this.bookTaxi = new BookTaxiView(this);
+
 	}
 
-	public void showMenu() {
+	public void showMenu() throws SQLException {
 		while (true) {
 			System.out.println("valid pickup points A,B,C,D,E,F");
 			System.out.println("0 - > Book Taxi");
@@ -28,10 +32,10 @@ public class TaxiView {
 			switch (choice) {
 			case 0:
 
-				bookTaxi();
+				bookTaxi.bookTaxi();
 				break;
 			case 1:
-				printTaxiDetails();
+				bookTaxi.printTaxiDetails();
 				break;
 			default:
 				return;
@@ -39,38 +43,23 @@ public class TaxiView {
 		}
 	}
 
-	private void bookTaxi() {
-//		int customerID = viewModel.getTaxis().size() + 1;
-		int customerID = 1;
-		System.out.println("Enter Pickup point");
-		char pickupPoint = scanner.next().charAt(0);
-		System.out.println("Enter Drop point");
-		char dropPoint = scanner.next().charAt(0);
-		System.out.println("Enter Pickup time");
-		int pickupTime = scanner.nextInt();
-		freeTaxi = viewModel.getFreeTaxis(taxi, pickupTime, dropPoint);
-
-		viewModel.bookTaxi(customerID, pickupPoint, dropPoint, pickupTime, freeTaxi);
-		customerID++;
-	}
-
-	private void printTaxiDetails() {
-//		for (Taxi taxi : viewModel.getTaxis()) {
-//			taxi.printDetails();
+//	private void printTaxiDetails() {
+////		for (Taxi taxi : viewModel.getTaxis()) {
+////			taxi.printDetails();
+////		}
+//		for (Taxi taxi : taxi) {
+////			System.out.println();
+//			taxi.printTaxiDetails();
 //		}
-		for (Taxi taxi : taxi) {
-//			System.out.println();
-			taxi.printTaxiDetails();
-		}
-		if (freeTaxi == null) {
-			System.out.println("No Taxi Details");
-			return;
-		}
-
-		for (Taxi taxi : freeTaxi) {
-			taxi.printDetails();
-
-//			System.out.println("hi");
-		}
-	}
+//		if (freeTaxi == null) {
+//			System.out.println("No Taxi Details");
+//			return;
+//		}
+//
+//		for (Taxi taxi : freeTaxi) {
+//			taxi.printDetails();
+//
+////			System.out.println("hi");
+//		}
+//	}
 }
