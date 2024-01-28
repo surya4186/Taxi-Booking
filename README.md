@@ -12,10 +12,10 @@ This application provides a simplified taxi booking system with capabilities for
 - **Print Taxi Details:** View details of available taxis and their current state.
 - 
 ### Planning
-Project Duration: 31 days
-Type: Console Application
-Language: Java
-Contributor: 1
+Project Duration: 31 days.
+Type: Console Application.
+Language: Java.
+Contributor: 1.
 
 ## Project Structure
 
